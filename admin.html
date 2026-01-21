@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Crime Reporting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🛡️ Crime Report</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="complaint.html" class="nav-link">File Complaint</a>
+                </li>
+                <li class="nav-item">
+                    <a href="status.html" class="nav-link">Check Status</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link active">Admin Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="emergency.html" class="nav-link emergency-link">Emergency</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section id="loginSection" class="login-section">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-header">
+                    <h1>🔐 Admin Login</h1>
+                    <p>Access the admin dashboard to manage complaints</p>
+                </div>
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div class="login-note">
+                    <!--<p><strong>Demo Credentials:</strong></p>
+                    <p>Username: admin</p>
+                    <p>Password: admin123</p> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboardSection" class="dashboard-section" style="display: none;">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>📊 Admin Dashboard</h1>
+                <div class="dashboard-actions">
+                    <button id="generateReportBtn" class="btn btn-secondary">Generate Report</button>
+                    <button id="logoutBtn" class="btn btn-outline">Logout</button>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">📋</div>
+                    <div class="stat-content">
+                        <h3 id="totalComplaints">0</h3>
+                        <p>Total Complaints</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-content">
+                        <h3 id="pendingComplaints">0</h3>
+                        <p>Under Review</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔍</div>
+                    <div class="stat-content">
+                        <h3 id="investigationComplaints">0</h3>
+                        <p>Under Investigation</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <h3 id="resolvedComplaints">0</h3>
+                        <p>Resolved</p>
+                    </div>
+                </div>
+                <div class="stat-card emergency-stat">
+                    <div class="stat-icon">🚨</div>
+                    <div class="stat-content">
+                        <h3 id="emergencyComplaints">0</h3>
+                        <p>Emergency Reports</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Tracker Section -->
+            <div class="location-tracker-container">
+                <h2>📍 Location Tracker</h2>
+                <div class="location-controls">
+                    <button id="getLocationBtn" class="btn btn-primary">Get Current Location</button>
+                    <button id="trackComplaintsBtn" class="btn btn-secondary">Track All Complaints</button>
+                    <button id="emergencyMapBtn" class="btn btn-emergency">Emergency Map</button>
+                </div>
+                <div class="location-info">
+                    <div class="location-display">
+                        <h3>Current Location</h3>
+                        <p id="currentLocation">Click "Get Current Location" to start tracking</p>
+                        <div class="coordinates">
+                            <span>Latitude: <span id="latitude">--</span></span>
+                            <span>Longitude: <span id="longitude">--</span></span>
+                        </div>
+                    </div>
+                    <div class="location-map">
+                        <div id="mapContainer" class="map-container">
+                            <div class="map-placeholder">
+                                <div class="map-icon">🗺️</div>
+                                <p>Interactive map will appear here</p>
+                                <p>Click "Track All Complaints" to view complaint locations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Notifications -->
+            <div class="emergency-notifications-container">
+                <h2>🚨 Emergency Notifications</h2>
+                <div class="notification-controls">
+                    <button id="enableNotificationsBtn" class="btn btn-emergency">Enable Notifications</button>
+                    <button id="testNotificationBtn" class="btn btn-secondary">Test Notification</button>
+                    <button id="clearNotificationsBtn" class="btn btn-outline">Clear All</button>
+                </div>
+                <div class="notifications-list" id="notificationsList">
+                    <!-- Emergency notifications will appear here -->
+                </div>
+            </div>
+
+            <!-- Complaints Table -->
+            <div class="complaints-table-container">
+                <h2>Complaints Management</h2>
+                <div class="table-controls">
+                    <div class="search-box">
+                        <input type="text" id="searchComplaints" placeholder="Search complaints...">
+                    </div>
+                    <div class="filter-box">
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="Under Review">Under Review</option>
+                            <option value="Investigation Started">Investigation Started</option>
+                            <option value="Resolved">Resolved</option>
+                        </select>
+                    </div>
+                    <div class="admin-actions">
+                        <button id="updateReportBtn" class="btn btn-primary">Update Report</button>
+                        <button id="exportDataBtn" class="btn btn-secondary">Export Data</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="complaintsTable" class="complaints-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complaintsTableBody">
+                            <!-- Table rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complaint Details Modal -->
+    <div id="complaintModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Complaint Details</h2>
+                <span class="close" onclick="closeComplaintModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="complaintModalBody">
+                <!-- Complaint details will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeComplaintModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Update Modal -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Update Status</h2>
+                <span class="close" onclick="closeStatusModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="statusUpdateForm">
+                    <div class="form-group">
+                        <label for="newStatus">New Status</label>
+                        <select id="newStatus" required>
+                            <option value="Under Review">Under Review</option>
+                            <option value="Investigation Started">Investigation Started</option>
+                            <option value="Resolved">Resolved</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="statusNotes">Notes (Optional)</label>
+                        <textarea id="statusNotes" rows="3" placeholder="Add any notes about the status update..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeStatusModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="updateComplaintStatus()">Update Status</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Crime Report Summary</h2>
+                <span class="close" onclick="closeReportModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="reportModalBody">
+                <!-- Report content will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="printReport()">Print Report</button>
+                <button class="btn btn-secondary" onclick="closeReportModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Update Modal -->
+    <div id="reportUpdateModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>📝 Update Report</h2>
+                <span class="close" onclick="closeReportUpdateModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="reportUpdateForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="updateComplaintId">Complaint ID</label>
+                            <input type="text" id="updateComplaintId" name="complaintId" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateStatus">Status</label>
+                            <select id="updateStatus" name="status" required>
+                                <option value="Under Review">Under Review</option>
+                                <option value="Investigation Started">Investigation Started</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDescription">Updated Description</label>
+                        <textarea id="updateDescription" name="description" rows="4" placeholder="Add any updates or additional information..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateNotes">Admin Notes</label>
+                        <textarea id="updateNotes" name="notes" rows="3" placeholder="Internal notes for investigation..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="updatePriority">Priority Level</label>
+                        <select id="updatePriority" name="priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                            <option value="Critical">Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateAssignedOfficer">Assigned Officer</label>
+                        <input type="text" id="updateAssignedOfficer" name="assignedOfficer" placeholder="Officer name or badge number">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeReportUpdateModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveReportUpdate()">Save Updates</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🛡️ Crime Report</h3>
+                    <p>Making communities safer through technology</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="complaint.html">File Complaint</a></li>
+                        <li><a href="status.html">Check Status</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📞 Emergency: 911</p>
+                    <p>📧 Support: support@crimereport.gov</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Crime Reporting System | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

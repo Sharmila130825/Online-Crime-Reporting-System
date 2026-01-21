@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Report - Crime Reporting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🛡️ Crime Report</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="complaint.html" class="nav-link">File Complaint</a>
+                </li>
+                <li class="nav-item">
+                    <a href="anonymous.html" class="nav-link active">Anonymous Report</a>
+                </li>
+                <li class="nav-item">
+                    <a href="status.html" class="nav-link">Check Status</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link">Admin Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="emergency.html" class="nav-link emergency-link">Emergency</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Anonymous Report Section -->
+    <section class="anonymous-section">
+        <div class="container">
+            <div class="anonymous-header">
+                <h1>🔒 Anonymous Crime Report</h1>
+                <p>Report crimes without revealing your identity. Your privacy is protected.</p>
+                <div class="privacy-notice">
+                    <div class="privacy-icon">🛡️</div>
+                    <div class="privacy-text">
+                        <h3>Your Privacy is Protected</h3>
+                        <p>No personal information is required. Your report will be processed anonymously.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="anonymous-form-container">
+                <form id="anonymousForm" class="anonymous-form">
+                    <div class="form-group">
+                        <label for="crimeType">Crime Type *</label>
+                        <select id="crimeType" name="crimeType" required>
+                            <option value="">Select Crime Type</option>
+                            <option value="theft">Theft/Burglary</option>
+                            <option value="assault">Assault</option>
+                            <option value="fraud">Fraud/Scam</option>
+                            <option value="vandalism">Vandalism</option>
+                            <option value="drug">Drug Related</option>
+                            <option value="cyber">Cyber Crime</option>
+                            <option value="traffic">Traffic Violation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" name="location" placeholder="Street, City, State" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date of Incident *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description of Incident *</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Please provide detailed information about what happened..." required></textarea>
+                    </div>
+
+                    <!-- Real-time Media Upload Section -->
+                    <div class="media-upload-section">
+                        <h3>📸 Real-time Evidence Upload</h3>
+                        <p>Capture photos, videos, or audio directly from your device</p>
+                        
+                        <div class="media-controls">
+                            <button type="button" id="capturePhotoBtn" class="btn btn-secondary">
+                                📷 Take Photo
+                            </button>
+                            <button type="button" id="recordVideoBtn" class="btn btn-secondary">
+                                🎥 Record Video
+                            </button>
+                            <button type="button" id="recordAudioBtn" class="btn btn-secondary">
+                                🎵 Record Audio
+                            </button>
+                            <button type="button" id="uploadFileBtn" class="btn btn-outline">
+                                📁 Upload File
+                            </button>
+                        </div>
+
+                        <!-- Camera/Video Preview -->
+                        <div class="media-preview-container">
+                            <video id="cameraPreview" style="display: none;" autoplay muted></video>
+                            <canvas id="photoCanvas" style="display: none;"></canvas>
+                            <div id="mediaPreview" class="media-preview">
+                                <div class="preview-placeholder">
+                                    <div class="preview-icon">📷</div>
+                                    <p>No media captured yet</p>
+                                    <p>Click buttons above to capture evidence</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Captured Media List -->
+                        <div class="captured-media" id="capturedMedia">
+                            <!-- Captured media items will appear here -->
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="agreeAnonymous" name="agreeAnonymous" required>
+                        <label for="agreeAnonymous">I confirm this report is accurate and understand it will be processed anonymously *</label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Submit Anonymous Report</button>
+                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Anonymous Report Info -->
+            <div class="anonymous-info">
+                <h3>How Anonymous Reporting Works</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">🔒</div>
+                        <h4>No Registration Required</h4>
+                        <p>Submit reports without creating an account or providing personal details</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📱</div>
+                        <h4>Real-time Evidence</h4>
+                        <p>Capture photos, videos, and audio directly from your device</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⚡</div>
+                        <h4>Instant Processing</h4>
+                        <p>Reports are immediately sent to law enforcement</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🛡️</div>
+                        <h4>Secure & Private</h4>
+                        <p>Your identity remains completely anonymous</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🛡️ Crime Report</h3>
+                    <p>Making communities safer through technology</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="complaint.html">File Complaint</a></li>
+                        <li><a href="anonymous.html">Anonymous Report</a></li>
+                        <li><a href="status.html">Check Status</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📞 Emergency: 911</p>
+                    <p>📧 Support: support@crimereport.gov</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Crime Reporting System | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="anonymousSuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✅ Anonymous Report Submitted!</h2>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">🔒</div>
+                <p><strong>Your anonymous report has been received!</strong></p>
+                <p>Your report will be processed by law enforcement without revealing your identity.</p>
+                <div class="anonymous-id">
+                    <strong>Report ID: <span id="anonymousReportId"></span></strong>
+                </div>
+                <p><em>Note: Since this is an anonymous report, you cannot track its status.</em></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeAnonymousModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input -->
+    <input type="file" id="fileInput" accept="image/*,video/*,audio/*" style="display: none;" multiple>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

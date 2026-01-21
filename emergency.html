@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Report - Crime Reporting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🛡️ Crime Report</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="complaint.html" class="nav-link">File Complaint</a>
+                </li>
+                <li class="nav-item">
+                    <a href="anonymous.html" class="nav-link">Anonymous Report</a>
+                </li>
+                <li class="nav-item">
+                    <a href="status.html" class="nav-link">Check Status</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link">Admin Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="emergency.html" class="nav-link active emergency-link">Emergency</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Emergency Section -->
+    <section class="emergency-section">
+        <div class="container">
+            <div class="emergency-header">
+                <h1>🚨 Emergency Report</h1>
+                <p>For immediate assistance, call 911 first. Use this form for urgent crime reports.</p>
+            </div>
+
+            <div class="emergency-content">
+                <div class="emergency-warning">
+                    <div class="warning-icon">⚠️</div>
+                    <h3>Important Notice</h3>
+                    <p>If you are in immediate danger or witnessing a crime in progress, please call 911 immediately. This form is for urgent crime reports that require immediate police attention.</p>
+                </div>
+
+                <div class="emergency-form-container">
+                    <button id="emergencyBtn" class="btn btn-emergency">Report Emergency</button>
+                </div>
+
+                <div class="emergency-info">
+                    <h3>What constitutes an emergency?</h3>
+                    <ul>
+                        <li>Crimes in progress</li>
+                        <li>Immediate threats to safety</li>
+                        <li>Active violence or assault</li>
+                        <li>Burglary or break-in in progress</li>
+                        <li>Any situation requiring immediate police response</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Form Modal -->
+    <div id="emergencyModal" class="modal">
+        <div class="modal-content emergency-modal">
+            <div class="modal-header emergency-header">
+                <h2>🚨 Emergency Report Form</h2>
+                <span class="close" onclick="closeEmergencyModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="emergencyForm">
+                    <div class="form-group">
+                        <label for="emergencyName">Your Name *</label>
+                        <input type="text" id="emergencyName" name="emergencyName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyLocation">Location *</label>
+                        <input type="text" id="emergencyLocation" name="emergencyLocation" placeholder="Street, City, State" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyType">Emergency Type *</label>
+                        <select id="emergencyType" name="emergencyType" required>
+                            <option value="">Select Emergency Type</option>
+                            <option value="crime-in-progress">Crime in Progress</option>
+                            <option value="active-violence">Active Violence</option>
+                            <option value="burglary">Burglary/Break-in</option>
+                            <option value="assault">Assault</option>
+                            <option value="threat">Immediate Threat</option>
+                            <option value="other">Other Emergency</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyDescription">Description *</label>
+                        <textarea id="emergencyDescription" name="emergencyDescription" rows="4" placeholder="Describe the emergency situation..." required></textarea>
+                    </div>
+
+                    <!-- Emergency Evidence Upload -->
+                    <div class="emergency-evidence-section">
+                        <h4>🚨 Emergency Evidence Upload</h4>
+                        <p>Capture photos, videos, or audio of the emergency situation</p>
+                        
+                        <div class="emergency-media-controls">
+                            <button type="button" id="emergencyPhotoBtn" class="btn btn-emergency">
+                                📷 Emergency Photo
+                            </button>
+                            <button type="button" id="emergencyVideoBtn" class="btn btn-emergency">
+                                🎥 Emergency Video
+                            </button>
+                            <button type="button" id="emergencyAudioBtn" class="btn btn-emergency">
+                                🎵 Emergency Audio
+                            </button>
+                        </div>
+
+                        <!-- Emergency Media Preview -->
+                        <div class="emergency-media-preview">
+                            <video id="emergencyCameraPreview" style="display: none;" autoplay muted></video>
+                            <canvas id="emergencyPhotoCanvas" style="display: none;"></canvas>
+                            <div id="emergencyMediaPreview" class="emergency-preview">
+                                <div class="emergency-preview-placeholder">
+                                    <div class="emergency-preview-icon">🚨</div>
+                                    <p>No emergency evidence captured</p>
+                                    <p>Capture evidence to help responders</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emergency Evidence List -->
+                        <div class="emergency-evidence-list" id="emergencyEvidenceList">
+                            <!-- Emergency evidence will appear here -->
+                        </div>
+                    </div>
+
+                    <div class="emergency-note">
+                        <p><strong>Note:</strong> This report will be sent to the nearest police station immediately.</p>
+                        <p><strong>Evidence:</strong> Any captured photos, videos, or audio will be included with your report.</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeEmergencyModal()">Cancel</button>
+                <button class="btn btn-emergency" onclick="submitEmergencyReport()">Send Emergency Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Success Modal -->
+    <div id="emergencySuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header success-header">
+                <h2>✅ Emergency Report Sent!</h2>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">🚨</div>
+                <p><strong>Emergency Report Sent to Nearest Station!</strong></p>
+                <p>Your emergency report has been transmitted to the nearest police station. Officers will respond as quickly as possible.</p>
+                <div class="emergency-actions">
+                    <p><strong>If you haven't already, please call 911 for immediate assistance.</strong></p>
+                    <button class="btn btn-emergency" onclick="call911()">Call 911 Now</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeEmergencySuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🛡️ Crime Report</h3>
+                    <p>Making communities safer through technology</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="complaint.html">File Complaint</a></li>
+                        <li><a href="status.html">Check Status</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📞 Emergency: 911</p>
+                    <p>📧 Support: support@crimereport.gov</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Crime Reporting System | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

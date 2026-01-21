@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Complaint - Crime Reporting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🛡️ Crime Report</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="complaint.html" class="nav-link active">File Complaint</a>
+                </li>
+                <li class="nav-item">
+                    <a href="anonymous.html" class="nav-link">Anonymous Report</a>
+                </li>
+                <li class="nav-item">
+                    <a href="status.html" class="nav-link">Check Status</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link">Admin Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="emergency.html" class="nav-link emergency-link">Emergency</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Complaint Form Section -->
+    <section class="complaint-form-section">
+        <div class="container">
+            <div class="form-header">
+                <h1>File a Crime Report</h1>
+                <p>Please provide accurate information to help us process your complaint efficiently</p>
+            </div>
+            
+            <form id="complaintForm" class="complaint-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactNumber">Contact Number *</label>
+                        <input type="tel" id="contactNumber" name="contactNumber" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="crimeType">Crime Type *</label>
+                        <select id="crimeType" name="crimeType" required>
+                            <option value="">Select Crime Type</option>
+                            <option value="theft">Theft/Burglary</option>
+                            <option value="assault">Assault</option>
+                            <option value="fraud">Fraud/Scam</option>
+                            <option value="vandalism">Vandalism</option>
+                            <option value="domestic">Domestic Violence</option>
+                            <option value="cyber">Cyber Crime</option>
+                            <option value="drug">Drug Related</option>
+                            <option value="traffic">Traffic Violation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" name="location" placeholder="Street, City, State" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date of Incident *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description of Incident *</label>
+                    <textarea id="description" name="description" rows="5" placeholder="Please provide detailed information about what happened..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Evidence Upload (Optional)</label>
+                    <div class="file-upload-section">
+                        <div class="file-upload-group">
+                            <label for="imageUpload">📷 Images</label>
+                            <input type="file" id="imageUpload" name="imageUpload" accept="image/*" multiple>
+                        </div>
+                        <div class="file-upload-group">
+                            <label for="audioUpload">🎵 Audio</label>
+                            <input type="file" id="audioUpload" name="audioUpload" accept="audio/*">
+                        </div>
+                        <div class="file-upload-group">
+                            <label for="videoUpload">🎥 Video</label>
+                            <input type="file" id="videoUpload" name="videoUpload" accept="video/*">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label for="agreeTerms">I agree to the terms and conditions and confirm that the information provided is accurate *</label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Complaint</button>
+                    <button type="reset" class="btn btn-secondary">Clear Form</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🛡️ Crime Report</h3>
+                    <p>Making communities safer through technology</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="complaint.html">File Complaint</a></li>
+                        <li><a href="status.html">Check Status</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📞 Emergency: 911</p>
+                    <p>📧 Support: support@crimereport.gov</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Crime Reporting System | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✅ Complaint Submitted Successfully!</h2>
+            </div>
+            <div class="modal-body">
+                <p>Your complaint has been received and is being processed.</p>
+                <div class="complaint-id">
+                    <strong>Complaint ID: <span id="complaintId"></span></strong>
+                </div>
+                <p>Please save this ID to track your complaint status.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

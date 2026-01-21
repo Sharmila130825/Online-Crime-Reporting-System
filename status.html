@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Status - Crime Reporting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🛡️ Crime Report</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="complaint.html" class="nav-link">File Complaint</a>
+                </li>
+                <li class="nav-item">
+                    <a href="anonymous.html" class="nav-link">Anonymous Report</a>
+                </li>
+                <li class="nav-item">
+                    <a href="status.html" class="nav-link active">Check Status</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link">Admin Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="emergency.html" class="nav-link emergency-link">Emergency</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Status Check Section -->
+    <section class="status-section">
+        <div class="container">
+            <div class="status-header">
+                <h1>Check Complaint Status</h1>
+                <p>Enter your complaint ID to track the progress of your report</p>
+            </div>
+
+            <div class="status-form-container">
+                <form id="statusForm" class="status-form">
+                    <div class="form-group">
+                        <label for="complaintIdInput">Complaint ID *</label>
+                        <input type="text" id="complaintIdInput" name="complaintId" placeholder="Enter your complaint ID (e.g., CR12345)" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Check Status</button>
+                </form>
+            </div>
+
+            <!-- Status Results -->
+            <div id="statusResults" class="status-results" style="display: none;">
+                <div class="status-card">
+                    <div class="status-header-card">
+                        <h3>Complaint Details</h3>
+                        <div class="status-badge" id="statusBadge"></div>
+                    </div>
+                    <div class="status-content">
+                        <div class="status-info">
+                            <div class="info-row">
+                                <span class="label">Complaint ID:</span>
+                                <span class="value" id="resultComplaintId"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Name:</span>
+                                <span class="value" id="resultName"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Crime Type:</span>
+                                <span class="value" id="resultCrimeType"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Location:</span>
+                                <span class="value" id="resultLocation"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Date Filed:</span>
+                                <span class="value" id="resultDateFiled"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Status:</span>
+                                <span class="value" id="resultStatus"></span>
+                            </div>
+                        </div>
+                        <div class="status-description">
+                            <h4>Description:</h4>
+                            <p id="resultDescription"></p>
+                        </div>
+                        <div class="status-timeline">
+                            <h4>Progress Timeline:</h4>
+                            <div class="timeline" id="statusTimeline">
+                                <!-- Timeline items will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-content">
+                    <div class="no-results-icon">❌</div>
+                    <h3>Complaint Not Found</h3>
+                    <p>The complaint ID you entered was not found in our system.</p>
+                    <p>Please check your ID and try again, or <a href="complaint.html">file a new complaint</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🛡️ Crime Report</h3>
+                    <p>Making communities safer through technology</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="complaint.html">File Complaint</a></li>
+                        <li><a href="status.html">Check Status</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📞 Emergency: 911</p>
+                    <p>📧 Support: support@crimereport.gov</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Crime Reporting System | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
